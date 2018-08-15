@@ -10,6 +10,7 @@ Task.prototype.getData = function () {
   this.request.get()
     .then((tasks) => {
       PubSub.publish('Tasks:all-data-ready', tasks);
+      console.dir(tasks);
     })
     .catch((err) => {
       console.error(err);
