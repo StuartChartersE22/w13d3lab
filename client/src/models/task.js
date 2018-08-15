@@ -23,6 +23,13 @@ Task.prototype.bindingEvents = function () {
   PubSub.subscribe(`FormView:new-entry`, (evt) => {
     const task = evt.detail;
     console.log(task);
+    this.request.post(task)
+    .then((tasks) => {
+      PubSub.publish('Tasks:all-data-ready', tasks);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
   })
 
 };
