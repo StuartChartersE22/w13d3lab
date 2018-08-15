@@ -8,5 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   listView.bindingEvents();
 
   const task = new Task();
+  task.bindingEvents();
   task.getData();
 });

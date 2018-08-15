@@ -6,6 +6,20 @@ const Task = function () {
   this.request = new Request(this.url);
 }
 
+Task.prototype.bindingEvents = function () {
+  PubSub.subscribe(`ListView:task-status-update`, (evt) => {
+    const taskCompleteStatus = {complete: evt.detail.complete};
+    const taskId = evt.detail._id;
+    this.request.update(taskId, taskCompleteStatus)
+    .then((tasks) => {
+      PubSub.publish('Tasks:all-data-ready', tasks);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  });
+};
+
 Task.prototype.getData = function () {
   this.request.get()
     .then((tasks) => {

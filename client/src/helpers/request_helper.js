@@ -8,7 +8,6 @@ Request.prototype.get = function () {
 };
 
 Request.prototype.post = function (payload) {
-  console.log(payload);
   return fetch(this.url, {
 
     method: 'POST',
@@ -23,6 +22,15 @@ Request.prototype.delete = function (id) {
     method: 'DELETE'
   })
     .then((response) => response.json());
+};
+
+Request.prototype.update = function (id, payload) {
+  return fetch(`${this.url}/${id}`, {
+    method: `PUT`,
+    body: JSON.stringify(payload),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then((response) => response.json());
 };
 
 module.exports = Request;
