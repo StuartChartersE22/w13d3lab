@@ -21,10 +21,11 @@ module.exports = ListView;
 
 function addTask (container, task) {
   const taskDiv = document.createElement(`div`);
-  taskDiv.className = `complete-${task.complete}`;
+  taskDiv.className = `task-div`;
 
   const taskTitle = document.createElement(`h3`);
   taskTitle.textContent = task.task;
+  taskTitle.className = `complete-${task.complete}`;
 
   taskDiv.appendChild(taskTitle);
 

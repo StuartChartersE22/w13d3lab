@@ -1,3 +1,56 @@
+body{
+  background-color: #BCAB79;
+}
+
 .complete-true{
   text-decoration: line-through;
+}
+
+.task-input-container {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+#task-input, #save-btn{
+
+  height: 1.7em;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1.5em;
+  vertical-align: middle;
+
+}
+
+#task-input{
+    width: 60%;
+}
+
+h1{
+  text-align: center;
+  text-decoration: underline;
+  padding-bottom: 5%;
+}
+
+.task-div{
+  background-color: #2978A0;
+  display: grid;
+  flex-direction: row;
+  width: 90%;
+  border: 1px solid #315659;
+  margin: 10px auto;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+
+h3 {
+  margin-left: 1.5em;
+}
+
+.delete-button {
+  background-color: #C6E0FF;
 }
