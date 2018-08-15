@@ -3,7 +3,7 @@ const ListView = require('./views/list_view.js');
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const container = document.querySelector(`body`);
+  const container = document.querySelector(`.task-list`);
   const listView = new ListView(container);
   listView.bindingEvents();
 
