@@ -12,7 +12,14 @@ ListView.prototype.bindingEvents = function () {
   })
 };
 
-const addTask = (container, task) => {
+ListView.prototype.render = function (tasks) {
+  this.container.innerHTML = ``;
+  const list = tasks.reduce(addTask, this.container);
+};
+
+module.exports = ListView;
+
+function addTask (container, task) {
   const taskDiv = document.createElement(`div`);
   taskDiv.className = `complete-${task.complete}`;
 
@@ -21,6 +28,16 @@ const addTask = (container, task) => {
 
   taskDiv.appendChild(taskTitle);
 
+  const deleteButton = document.createElement(`button`);
+  deleteButton.value = task._id;
+  deleteButton.className = `delete-button`;
+  deleteButton.textContent = `Delete`;
+  deleteButton.addEventListener(`click`, (evt) => {
+    PubSub.publish(`ListView:delete-task`, evt.target.value);
+  })
+
+  taskDiv.appendChild(deleteButton);
+
   taskDiv.addEventListener(`click`, () => {
     task.complete = !task.complete;
     PubSub.publish(`ListView:task-status-update`, task);
@@ -28,10 +45,3 @@ const addTask = (container, task) => {
   container.appendChild(taskDiv);
   return container;
 };
-
-ListView.prototype.render = function (tasks) {
-  this.container.innerHTML = ``;
-  const list = tasks.reduce(addTask, this.container);
-};
-
-module.exports = ListView;

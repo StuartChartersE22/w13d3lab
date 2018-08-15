@@ -29,7 +29,18 @@ Task.prototype.bindingEvents = function () {
     .catch((err) => {
       console.error(err);
     });
-  })
+  });
+
+  PubSub.subscribe(`ListView:delete-task`, (evt) => {
+    const id = evt.detail;
+    this.request.delete(id)
+    .then((tasks) => {
+      PubSub.publish('Tasks:all-data-ready', tasks);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  });
 
 };
 
