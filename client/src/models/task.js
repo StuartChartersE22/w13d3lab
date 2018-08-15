@@ -7,6 +7,7 @@ const Task = function () {
 }
 
 Task.prototype.bindingEvents = function () {
+
   PubSub.subscribe(`ListView:task-status-update`, (evt) => {
     const taskCompleteStatus = {complete: evt.detail.complete};
     const taskId = evt.detail._id;
@@ -18,6 +19,12 @@ Task.prototype.bindingEvents = function () {
       console.error(err);
     });
   });
+
+  PubSub.subscribe(`FormView:new-entry`, (evt) => {
+    const task = evt.detail;
+    console.log(task);
+  })
+
 };
 
 Task.prototype.getData = function () {
