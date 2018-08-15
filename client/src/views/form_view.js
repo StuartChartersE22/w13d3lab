@@ -12,6 +12,7 @@ FormView.prototype.bindingEvents = function () {
       complete: false
     }
     PubSub.publish(`FormView:new-entry`, task);
+    evt.target.reset();
   })
 };
 
